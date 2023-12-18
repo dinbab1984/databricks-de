@@ -75,7 +75,10 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN> "${DA.paths.kafka_events}" 
+DROP TABLE  IF EXISTS events_json;
+CREATE  TABLE events_json
+(key BINARY,offset LONG, partition integer, timestamp LONG,topic STRING,value BINARY)
+USING JSON LOCATION"${DA.paths.kafka_events}" 
 
 -- COMMAND ----------
 
@@ -104,6 +107,10 @@
 -- MAGIC
 -- MAGIC  
 -- MAGIC Run the following cell to delete the tables and files associated with this lesson.
+
+-- COMMAND ----------
+
+SELECT * FROM events_json;
 
 -- COMMAND ----------
 

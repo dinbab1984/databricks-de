@@ -108,6 +108,11 @@ print("I'm running Python!")
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT "I like SQL!"
+
+# COMMAND ----------
+
 # DBTITLE 0,--i18n-5046f81c-cdbf-42c3-9b39-3be0721d837e
 # MAGIC %md
 # MAGIC
@@ -143,6 +148,11 @@ print("Hello Python!")
 
 # MAGIC %sql
 # MAGIC select "Hello SQL!"
+
+# COMMAND ----------
+
+# MAGIC %scala
+# MAGIC println("I am running SCALA!")
 
 # COMMAND ----------
 
@@ -209,7 +219,7 @@ print("Hello Python!")
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC -- SELECT * FROM demo_tmp_vw
+# MAGIC SELECT * FROM demo_tmp_vw
 
 # COMMAND ----------
 
@@ -291,7 +301,8 @@ print(f"DA.schema_name:       {DA.schema_name}")
 # COMMAND ----------
 
 path = f"{DA.paths.datasets}"
-dbutils.fs.ls(path)
+display(dbutils.fs.ls(path))
+
 
 # COMMAND ----------
 
