@@ -175,6 +175,10 @@ CREATE OR REPLACE TABLE purchase_dates (
 
 -- COMMAND ----------
 
+SELECT * FROM purchase_dates;
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-33e94ae0-f443-4cc9-9691-30b8b08179aa
 -- MAGIC %md
 -- MAGIC
@@ -221,8 +225,7 @@ SELECT * FROM purchase_dates
 
 -- COMMAND ----------
 
--- INSERT INTO purchase_dates VALUES
--- (1, 600000000, 42.0, "2020-06-18")
+INSERT INTO purchase_dates VALUES(1, 600000000, 42.0, "2020-06-18")
 
 -- COMMAND ----------
 

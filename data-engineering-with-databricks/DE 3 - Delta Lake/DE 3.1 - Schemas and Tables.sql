@@ -54,6 +54,7 @@
 -- COMMAND ----------
 
 CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_default_location;
+CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_custom_location LOCATION '${DA.paths.working_dir}/${da.schema_name}_custom_location.db';
 
 -- COMMAND ----------
 
@@ -67,6 +68,10 @@ CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_default_location;
 -- COMMAND ----------
 
 DESCRIBE SCHEMA EXTENDED ${da.schema_name}_default_location;
+
+-- COMMAND ----------
+
+DESCRIBE SCHEMA EXTENDED ${da.schema_name}_custom_location;
 
 -- COMMAND ----------
 
@@ -149,6 +154,39 @@ DROP TABLE managed_table;
 
 -- COMMAND ----------
 
+USE ${da.schema_name}_custom_location;
+
+CREATE OR REPLACE TABLE custom_location_table (width INT, length INT, height INT);
+INSERT INTO custom_location_table 
+VALUES (3, 2, 1);
+SELECT * FROM custom_location_table;
+
+-- COMMAND ----------
+
+DESCRIBE EXTENDED custom_location_table;
+
+-- COMMAND ----------
+
+-- MAGIC %python 
+-- MAGIC tbl_location = spark.sql(f"DESCRIBE DETAIL custom_location_table").first().location
+-- MAGIC print(tbl_location)
+-- MAGIC
+-- MAGIC files = dbutils.fs.ls(tbl_location)
+-- MAGIC display(files)
+
+-- COMMAND ----------
+
+DROP TABLE custom_location_table;
+
+-- COMMAND ----------
+
+-- MAGIC %python 
+-- MAGIC schema_default_location = spark.sql(f"DESCRIBE SCHEMA {DA.schema_name}_custom_location").collect()[3].database_description_value
+-- MAGIC print(schema_default_location)
+-- MAGIC display(dbutils.fs.ls(schema_default_location))
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-0e4046c8-2c3a-4bab-a14a-516cc0f41eda
 -- MAGIC %md
 -- MAGIC
@@ -222,6 +260,7 @@ DROP TABLE external_table;
 -- COMMAND ----------
 
 DROP SCHEMA ${da.schema_name}_default_location CASCADE;
+DROP SCHEMA ${da.schema_name}_custom_location CASCADE;
 
 -- COMMAND ----------
 
