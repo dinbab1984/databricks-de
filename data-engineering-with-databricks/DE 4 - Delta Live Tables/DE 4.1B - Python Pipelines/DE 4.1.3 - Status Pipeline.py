@@ -60,11 +60,11 @@
 
 # COMMAND ----------
 
-# TODO
+import dlt
 import pyspark.sql.functions as F
  
 source = spark.conf.get("source")
- 
+@dlt.table 
 def status_bronze():
     return (
         spark.readStream
@@ -80,7 +80,7 @@ def status_bronze():
  
  
 @dlt.table(
-    table_name = "status_silver"
+    name = "status_silver"
     )
 @dlt.expect_or_drop("valid_timestamp", "status_timestamp > 1640995200")
 def status_silver():
@@ -93,7 +93,7 @@ def status_silver():
 @dlt.table
 def email_updates():
     return (
-        spark.read("status_silver").alias("a")
+        dlt.read("status_silver").alias("a")
             .join(
                 dlt.read("subscribed_order_emails_v").alias("b"), 
                 on="order_id"
