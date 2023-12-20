@@ -157,6 +157,23 @@ process_completed_workouts() # Update the completed_workouts table
 
 # COMMAND ----------
 
+total = spark.table("completed_workouts").count() # .sql("SELECT COUNT(*) FROM completed_workouts") 
+print(f"{total:3} total")
+
+total = spark.table("completed_workouts").filter("in_progress=true").count()
+print(f"{total:3} where record is still awaiting end time")
+
+total = spark.table("completed_workouts").filter("end_time IS NOT NULL").count()
+print(f"{total:3} where end time has been recorded")
+
+total = spark.table("completed_workouts").filter("start_time IS NOT NULL").count()
+print(f"{total:3} where end time arrived after start time")
+
+total = spark.table("completed_workouts").filter("in_progress=true AND end_time IS NULL").count()
+print(f"{total:3} where they are in_progress AND have an end_time")
+
+# COMMAND ----------
+
 # MAGIC %md 
 # MAGIC Run the following cell to delete the tables and files associated with this lesson.
 

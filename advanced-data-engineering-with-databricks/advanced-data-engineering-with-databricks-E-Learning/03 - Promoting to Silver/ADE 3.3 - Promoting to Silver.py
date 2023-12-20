@@ -53,7 +53,7 @@
 
 # MAGIC %sql
 # MAGIC -- TODO
-# MAGIC ALTER TABLE -- <FILL-IN>
+# MAGIC ALTER TABLE heart_rate_silver ADD CONSTRAINT date_within_range CHECK (time >= to_date('2017-01-01','yyyy-MM-dd'));
 
 # COMMAND ----------
 
@@ -118,7 +118,7 @@ class Upsert:
 # COMMAND ----------
 
 # TODO
-sql_query = """<FILL-IN>"""
+sql_query = """MERGE INTO heart_rate_silver t USING stream_updates s ON t.device_id = s.device_id AND t.time = s.time WHEN NOT MATCHED THEN INSERT *"""
  
 streaming_merge=Upsert(sql_query)
 
@@ -152,6 +152,7 @@ new_total = spark.read.table("heart_rate_silver").count()
 
 print(f"Lesson #5: {731987:,}")
 print(f"New Total: {new_total:,}")
+
 
 # COMMAND ----------
 
