@@ -134,6 +134,11 @@ display(files)
 
 # COMMAND ----------
 
+files = DA.check_files("sensors_prod")
+display(files)
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC When we re-execute our deep clone command, we only copy those files that were written during our most recent transaction.
 
@@ -153,6 +158,11 @@ display(files)
 
 # MAGIC %sql
 # MAGIC DESCRIBE HISTORY sensors_backup
+
+# COMMAND ----------
+
+files = DA.check_files("sensors_backup")
+display(files)
 
 # COMMAND ----------
 
@@ -261,7 +271,7 @@ display(files)
 # COMMAND ----------
 
 # MAGIC %sql 
-# MAGIC -- SELECT * FROM sensors_dev
+# MAGIC SELECT * FROM sensors_dev
 
 # COMMAND ----------
 

@@ -144,6 +144,11 @@ DA.gym_mac_stream.load()
 
 # COMMAND ----------
 
+files = dbutils.fs.ls(DA.paths.gym_mac_logs_json)
+display(files)
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC CloudFiles will ignore previously processed data; only those newly written files will be processed.
 

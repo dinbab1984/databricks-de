@@ -107,7 +107,7 @@ from pyspark.sql import functions as F
 json_df = spark.read.json(DA.paths.source_daily)
  
 joined_df = (json_df.join(F.broadcast(date_lookup_df),
-                          FILL_IN,  # Insert the matching condition
+                          F.to_date((F.col("timestamp") / 1000).cast("timestamp")) == F.col("date"),  # Insert the matching condition
                           "left"))
  
 display(joined_df)
@@ -130,14 +130,14 @@ display(joined_df)
 # TODO
 def process_bronze():
     query = (spark.readStream
-                  .FILL_IN
-                  .FILL_IN
+                  .format("cloudFiles")
+                  .option("cloudFiles.format","json")
                   .option("cloudFiles.schemaLocation", f"{DA.paths.checkpoints}/bronze_schema")
                   .load(DA.paths.source_daily)
                   .join(F.broadcast(date_lookup_df), F.to_date((F.col("timestamp")/1000).cast("timestamp")) == F.col("date"), "left")
                   .writeStream
                   .option("checkpointLocation", f"{DA.paths.checkpoints}/bronze")
-                  .partitionBy(FILL_IN)
+                  .partitionBy("topic","week_part")
                   .trigger(availableNow=True)
                   .table("bronze"))
  
