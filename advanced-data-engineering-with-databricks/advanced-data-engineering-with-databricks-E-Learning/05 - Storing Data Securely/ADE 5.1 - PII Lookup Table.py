@@ -87,7 +87,18 @@ dbutils.fs.rm(f"{DA.paths.checkpoints}/registered_users", True)
 
 # TODO
 def ingest_user_reg():
-    pass
+    query = (spark.readStream
+              .schema("device_id LONG, mac_address STRING, registration_timestamp DOUBLE, user_id LONG")
+              .format("cloudFiles")
+              .option("cloudFiles.format", "json")
+              .option("cloudFiles.maxFilesPerTrigger", 1)
+              .load(DA.paths.raw_user_reg)
+              .writeStream
+              .option("checkpointLocation", f"{DA.paths.checkpoints}/registered_users")
+              .trigger(availableNow=True)
+              .table("registered_users")
+              .awaitTermination())
+              
 
 # COMMAND ----------
 
@@ -133,8 +144,8 @@ spark.conf.set("da.salt", salt)
 # COMMAND ----------
 
 # # If using the Databricks secrets store, here's how you'd read it...
-# salt = dbutils.secrets.get(scope="DA-ADE3.03", key="salt")
-# salt
+salt = dbutils.secrets.get(scope="DA-ADE3.03", key="salt")
+salt
 
 # COMMAND ----------
 
@@ -144,7 +155,7 @@ spark.conf.set("da.salt", salt)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT *, sha2(concat(user_id,"${da.salt}"), 256) AS alt_id
+# MAGIC SELECT *, sha2(concat(user_id,"${da.salt}"), 256) AS alt_id 
 # MAGIC FROM registered_users
 
 # COMMAND ----------
@@ -164,7 +175,18 @@ spark.conf.set("da.salt", salt)
 
 # MAGIC %sql
 # MAGIC -- TODO
-# MAGIC CREATE FUNCTION salted_hash <FILL-IN>
+# MAGIC CREATE OR REPLACE FUNCTION salted_hash(str STRING) RETURNS STRING
+# MAGIC   RETURN sha2(concat(str,"${da.salt}"), 256);
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT salted_hash("")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESCRIBE  FUNCTION EXTENDED salted_hash
 
 # COMMAND ----------
 
@@ -216,12 +238,15 @@ print("All tests passed.")
 
 # COMMAND ----------
 
-# TODO
+
 def load_user_lookup():
     (spark.readStream
-        <FILL-IN>
+        .table("registered_users")
+        .selectExpr("salted_hash(user_id) as alt_id","device_id","mac_address","user_id")
+        .writeStream
         .option("checkpointLocation", f"{DA.paths.checkpoints}/user_lookup")
-        <FILL-IN>
+        .trigger(availableNow=True)
+        .table("user_lookup")
     )
 
 # COMMAND ----------
