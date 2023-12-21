@@ -207,6 +207,11 @@ spark.conf.set("spark.databricks.delta.retentionDurationCheck.enabled", True)
 
 # COMMAND ----------
 
+files = dbutils.fs.ls(f"{source_path}/week_part=2019-49")
+display(files)
+
+# COMMAND ----------
+
 try:
     files = dbutils.fs.ls(source_path)
     print("The files NOT YET deleted.")
@@ -223,6 +228,7 @@ except Exception as e:
 # MAGIC %sql
 # MAGIC SELECT * 
 # MAGIC FROM bronze 
+# MAGIC
 # MAGIC WHERE topic='user_info' AND 
 # MAGIC       week_part <= '2019-48'
 

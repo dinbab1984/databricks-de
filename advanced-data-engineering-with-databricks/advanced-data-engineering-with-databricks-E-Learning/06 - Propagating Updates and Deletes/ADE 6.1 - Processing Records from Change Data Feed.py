@@ -221,6 +221,11 @@ display(files)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC DESCRIBE HISTORY silver
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## Read the Change Data Feed
 # MAGIC
@@ -235,9 +240,9 @@ display(files)
 cdc_df = (spark.readStream
                .format("delta")
                .option("readChangeData", True)
-               .option("startingVersion", 0)
+               .option("startingVersion", 1)
                .table("silver"))
-
+  
 cdc_la_df = cdc_df.filter("city = 'Los Angeles'")
 
 display(cdc_la_df, streamName = "display_la")
@@ -308,7 +313,7 @@ DA.cdc_stream.load()
 silver_stream_df = (spark.readStream
                          .format("delta")
                          .option("readChangeData", True)
-                         .option("startingVersion", 0)
+                         .option("startingVersion", 1)
                          .table("silver"))
 
 # COMMAND ----------
@@ -446,7 +451,7 @@ for stream in spark.streams.active:
 
 # MAGIC %sql
 # MAGIC SELECT * 
-# MAGIC FROM table_changes("silver", 0)
+# MAGIC FROM table_changes("silver", 1)
 # MAGIC WHERE mrn = 14125426
 # MAGIC ORDER BY _commit_version
 
@@ -460,7 +465,7 @@ for stream in spark.streams.active:
 # MAGIC %sql
 # MAGIC WITH deletes AS (
 # MAGIC   SELECT mrn
-# MAGIC   FROM table_changes("silver", 0)
+# MAGIC   FROM table_changes("silver", 1)
 # MAGIC   WHERE _change_type='delete'
 # MAGIC )
 # MAGIC

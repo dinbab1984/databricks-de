@@ -58,6 +58,11 @@
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT * FROM (SELECT cast(value as STRING) FROM BRONZE where topic='user_info') WHERE value:update_type = 'delete'
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 salt = "BEANS"
