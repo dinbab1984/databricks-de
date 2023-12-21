@@ -23,7 +23,7 @@ INSERT INTO task_6 VALUES (current_timestamp())
 -- TODO
 -- Expected failure... after configuring and running the multi-task job
 -- with the error, come back, fix the error, and then rerun the job.
-SELECT COUNT(potato) FROM task_6
+SELECT COUNT(*) FROM task_6
 
 -- COMMAND ----------
 
