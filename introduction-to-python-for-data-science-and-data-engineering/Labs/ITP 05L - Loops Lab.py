@@ -58,7 +58,8 @@
 
 # TODO
 def detention_helper(detention_message, num_lines):
-    FILL_IN
+    for n in range(0,num_lines):
+        print(f"{n+1}. " + detention_message)
 
 # COMMAND ----------
 
@@ -71,7 +72,7 @@ def detention_helper(detention_message, num_lines):
 # COMMAND ----------
 
 # TODO
-detention_helper(FILL_IN, FILL_IN)
+detention_helper('I will not let my dog eat my homework', 50)
 
 # COMMAND ----------
 
@@ -85,7 +86,10 @@ detention_helper(FILL_IN, FILL_IN)
 
 # TODO
 def detention_helper(detention_message, num_lines):
-    FILL_IN
+    while num_lines > 0:
+        print(detention_message)
+        num_lines = num_lines - 1
+        
 
 # COMMAND ----------
 
@@ -97,7 +101,7 @@ def detention_helper(detention_message, num_lines):
 # COMMAND ----------
 
 # TODO
-detention_helper(FILL_IN, FILL_IN)
+detention_helper('I will do my python homework', 25)
 
 # COMMAND ----------
 
@@ -114,19 +118,27 @@ detention_helper(FILL_IN, FILL_IN)
 
 # TODO: Modify the code below to use lists and loops instead repetitive variables.
 
+
 # city1 = "San Francisco" # Replace with a list named "cities"
 # city2 = "Paris"
 # city3 = "Mumbai"
+cities = ['San Francisco','Paris','Mumbai']
 
 # temperature1 = 58       # Replace with a list named "temperatures"
 # temperature2 = 75
 # temperature3 = 81
+temperatures = [58,75,81]
 
 # humidity1 = .85         # Replace with a list named "humidities"
 # humidity2 = .5
 # humidity3 = .88 
+humidities = [.85,.5,.88]
 
+print(f"{'City':15} {'Temperature':15} {'Humidity':15}")
 # print(f"{'City':15} {'Temperature':15} {'Humidity':15}")
+for city in cities:
+  idx = cities.index(city)
+  print(f"{city:15} {temperatures[idx]:11} {humidities[idx]:12.2f}")
 # print(f"{city1:15} {temperature1:11} {humidity1:12.2f}")
 # print(f"{city2:15} {temperature2:11} {humidity2:12.2f}")
 # print(f"{city3:15} {temperature3:11} {humidity3:12.2f}")
@@ -144,8 +156,21 @@ detention_helper(FILL_IN, FILL_IN)
 # COMMAND ----------
 
 # TODO
-def item_count(<FILL IN>):  
-    <FILL IN>
+def item_count(list):
+    dict = {}
+    for item in list:
+        if item in dict:
+            dict[item] += 1
+            continue
+        else:
+            dict[item] = 1
+    return dict
+        
+
+
+# COMMAND ----------
+
+item_count(['a', 'b', 'a'])
 
 # COMMAND ----------
 

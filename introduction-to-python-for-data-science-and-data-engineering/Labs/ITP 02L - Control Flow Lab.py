@@ -43,8 +43,16 @@
 # COMMAND ----------
 
 # TODO
-temperature = TODO
-sunny = TODO
+temperature = 100
+sunny = True
+
+if temperature >= 60:
+  if sunny:
+    print("ice cream")
+  else:
+    print("dimplings")
+else:
+  print("hot tea")
 
 # COMMAND ----------
 
@@ -76,9 +84,15 @@ sunny = TODO
 # COMMAND ----------
 
 # TODO
-km_since_last_change = TODO
-oil_change_light = TODO
-Write your logic here
+km_since_last_change = 17000
+oil_change_light = True
+if km_since_last_change >= 15000:
+  if oil_change_light:
+    print("oil change")
+  else:
+    print("wait")
+else:
+  print("wait")
 
 # COMMAND ----------
 
@@ -109,8 +123,9 @@ Write your logic here
 # COMMAND ----------
 
 # TODO
-year = TODO
-is_leap_year = TODO
+year = 2024
+is_leap_year = (year % 4== 0 and (year % 400 == 0 or year % 100 != 0))
+print(is_leap_year)
 
 # COMMAND ----------
 

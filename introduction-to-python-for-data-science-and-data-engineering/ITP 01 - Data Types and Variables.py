@@ -196,7 +196,7 @@ type(1.)
 
 # COMMAND ----------
 
-# "Hello" + 123
+"Hello" + 123
 
 # COMMAND ----------
 

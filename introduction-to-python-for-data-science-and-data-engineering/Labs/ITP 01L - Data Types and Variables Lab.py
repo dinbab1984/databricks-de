@@ -22,11 +22,11 @@
 # COMMAND ----------
 
 # TODO
-name = TODO
-num_chocolate = TODO
-chocolate_string = TODO
+name = 'Babu'
+num_chocolate = 100
+chocolate_string = f"{name} would like to eat {num_chocolate} bars of chocolate"
 
-print(TODO)
+print(chocolate_string)
 
 # COMMAND ----------
 
@@ -65,12 +65,12 @@ print("Test passed!")
 # COMMAND ----------
 
 # TODO
-num_students = TODO
-num_days = TODO
-class_name = TODO
-course_information = TODO
+num_students = 40
+num_days = 4
+class_name = "Python"
+course_information = f"There are {num_students * num_days} student days in the {class_name}"
 
-print(TODO)
+print(course_information)
 
 # COMMAND ----------
 

@@ -31,7 +31,7 @@
 # COMMAND ----------
 
 # TODO
-dinner_list = TODO
+dinner_list = ['potatoes','peppers','onions']
 
 # COMMAND ----------
 
@@ -45,7 +45,7 @@ dinner_list = TODO
 
 # COMMAND ----------
 
-# TODO
+dinner_list[0] = 'sweet potatoes'
 
 # COMMAND ----------
 
@@ -63,7 +63,7 @@ print("Test passed!")
 
 # COMMAND ----------
 
-# TODO
+dinner_list = dinner_list+ ['rice']
 
 # COMMAND ----------
 
@@ -82,7 +82,7 @@ print("Test passed!")
 
 # COMMAND ----------
 
-# TODO
+dinner_dict = { "sweet potatoes" : 3, "peppers" : 4, "onions":1 }
 
 # COMMAND ----------
 
@@ -105,7 +105,8 @@ print("Tests passed!")
 
 # COMMAND ----------
 
-# TODO
+dinner_dict["sweet potatoes"] = 2
+dinner_dict["ice cream"] = 1
 
 # COMMAND ----------
 
@@ -145,10 +146,10 @@ print("Tests passed!")
 # COMMAND ----------
 
 # TODO
-ingredient_set_1 = TODO
-ingredient_set_2 = TODO
-ingredient_set_3 = TODO
-ingredient_intersection_set = TODO
+ingredient_set_1 = {'carrots' , 'onions' , 'potatoes'}
+ingredient_set_2 = {'broccoli', 'carrots', 'rice'}
+ingredient_set_3 = {'sweet potatoes' ,'carrots' ,'corn'}
+ingredient_intersection_set = ingredient_set_1.intersection(ingredient_set_2).intersection(ingredient_set_3) # {'carrots'}
 
 # COMMAND ----------
 

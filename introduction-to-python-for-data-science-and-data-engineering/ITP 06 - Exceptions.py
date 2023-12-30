@@ -33,7 +33,7 @@
 
 # COMMAND ----------
 
-# if print("Hello World") # This is not correct Python code, so it throws a Syntax Error
+ if print("Hello World") # This is not correct Python code, so it throws a Syntax Error
 
 # COMMAND ----------
 
@@ -49,7 +49,7 @@
 
 # COMMAND ----------
 
-#  1 / 0 
+  1 / 0 
 
 # COMMAND ----------
 
@@ -113,10 +113,10 @@ except ZeroDivisionError:
 
 # COMMAND ----------
 
-# try:
-#     print(undefined_variable) # Throws a Name Error exception
-# except ZeroDivisionError:
-#     print("Exception Handled")
+ try:
+     print(undefined_variable) # Throws a Name Error exception
+ except ZeroDivisionError:
+     print("Exception Handled")
 
 # COMMAND ----------
 
@@ -162,8 +162,8 @@ except (ZeroDivisionError, NameError):
 
 # COMMAND ----------
 
-# assert 1 == 1
-# assert 1 == 2, "That is not true"
+assert 1 == 1
+assert 1 == 2, "That is not true"
 
 # COMMAND ----------
 

@@ -118,7 +118,7 @@ def dollars_to_euros(dollar_amount):
 # COMMAND ----------
 
 dollars_to_euros(5.0)
-dollars_to_euros(10)
+dollars_to_euros(119)
 dollars_to_euros(20.0)
 
 # COMMAND ----------
@@ -150,7 +150,7 @@ def dollars_to_euros_with_rate(dollar_amount, conversion_rate):
 
 dollars_to_euros_with_rate(10.0, 0.93)
 dollars_to_euros_with_rate(5.0, 1.0)
-# dollars_to_euros_with_rate(5.0) # This will error
+dollars_to_euros_with_rate(5.0) # This will error
 
 # COMMAND ----------
 
@@ -193,7 +193,7 @@ dollars_to_euros_with_rate(conversion_rate=0.93, dollar_amount=10.0)
 # COMMAND ----------
 
 dollars_to_euros_with_rate(10.0, conversion_rate=0.93)
-# dollars_to_euros_with_rate(10.0, dollar_amount=0.93) # this would error
+#dollars_to_euros_with_rate(10.0, dollar_amount=0.93) # this would error
 
 # COMMAND ----------
 
@@ -373,7 +373,7 @@ def function():
 # COMMAND ----------
 
 function()
-# func_variable # Uncomment and this will error
+func_variable # Uncomment and this will error
 
 # COMMAND ----------
 

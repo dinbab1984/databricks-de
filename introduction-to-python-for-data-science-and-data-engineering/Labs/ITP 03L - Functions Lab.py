@@ -41,7 +41,12 @@
 
 # COMMAND ----------
 
-# TODO
+def even_or_odd(num: int) -> str:
+  if num % 2 == 0:
+    return "even"
+  else:
+    return "odd"
+    
 
 # COMMAND ----------
 
@@ -84,7 +89,21 @@ print("Test passed!")
 
 # COMMAND ----------
 
-# TODO
+def fizz_buzz(num : any) -> str:
+  if type(num) != type(1):
+    return "Wrong type"
+  elif num % 5 == 0 and not (num % 3) == 0:
+    return "Fizz"
+  elif num % 3 == 0 and not (num % 5) == 0:
+    return "Buzz"
+  elif num % 5 == 0 and num % 3 == 0:
+    return "FizzBuzz"
+  elif not (num % 5 == 0 and num % 3 == 0): 
+    return num
+
+# COMMAND ----------
+
+fizz_buzz(15)
 
 # COMMAND ----------
 
@@ -138,7 +157,8 @@ print("Test passed!")
 
 # COMMAND ----------
 
-# TODO
+def is_leap_year(year: int) -> bool: 
+  return (year % 4== 0 and (year % 400 == 0 or year % 100 != 0))
 
 # COMMAND ----------
 
