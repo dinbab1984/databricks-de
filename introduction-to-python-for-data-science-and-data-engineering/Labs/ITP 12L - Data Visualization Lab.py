@@ -48,7 +48,7 @@ df
 
 # COMMAND ----------
 
-# TODO
+display(df)
 
 # COMMAND ----------
 
@@ -84,7 +84,7 @@ df
 
 # COMMAND ----------
 
-# TODO
+df["AveragePrice"].hist()
 
 # COMMAND ----------
 
@@ -142,7 +142,9 @@ df.dtypes
 
 # COMMAND ----------
 
-# TODO
+df1 = df[(df["region"] == "TotalUS") & (df["type"] == "organic")][["Date","Total Volume"]]
+# df1
+sns.scatterplot(data=df1,x="Date",y="Total Volume")
 
 # COMMAND ----------
 
@@ -178,7 +180,9 @@ df.dtypes
 
 # COMMAND ----------
 
-# TODO
+df1 = df[(df["region"] == "TotalUS") & (df["type"] == "conventional")][["Date","Total Volume"]]
+# df1
+sns.scatterplot(data=df1,x="Date",y="Total Volume")
 
 # COMMAND ----------
 

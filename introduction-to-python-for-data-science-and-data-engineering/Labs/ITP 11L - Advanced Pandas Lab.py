@@ -63,7 +63,7 @@ df = pd.read_csv(file_path).drop("Unnamed: 0", axis=1) # drop unnamed index colu
 # COMMAND ----------
 
 # TODO
-filtered_df = TODO
+filtered_df = df[(df["type"] == "organic") & (df["year"] == 2018)]
 filtered_df
 
 # COMMAND ----------
@@ -111,7 +111,7 @@ print("Test passed!")
 # COMMAND ----------
 
 # TODO
-final_df = TODO
+final_df = filtered_df.groupby(["region"])[["Total Volume"]].mean().sort_values(["Total Volume"],ascending=False).head(10)
 final_df
 
 # COMMAND ----------
