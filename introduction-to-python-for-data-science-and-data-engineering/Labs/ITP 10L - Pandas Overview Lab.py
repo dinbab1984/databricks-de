@@ -39,11 +39,11 @@ import pandas as pd
 # COMMAND ----------
 
 # TODO
-data = [["Buddy", 3, "Australian Shepherd"], ["Harley", 10, "Labrador"], ["Luna", 2, "Golden Retriever"], ["Bailey", 8, "Chihuahua"]]]
+data = [["Buddy", 3, "Australian Shepherd"], ["Harley", 10, "Labrador"], ["Luna", 2, "Golden Retriever"], ["Bailey", 8, "Chihuahua"]]
 
-column_names = # FILL_IN
+column_names = ["Name","Age","Breed"]
 
-df = # FILL_IN
+df = pd.DataFrame(data=data,columns=column_names)
 df
 
 # COMMAND ----------
@@ -97,7 +97,15 @@ print("Test passed!")
 
 # COMMAND ----------
 
-# TODO
+df["Name"].astype
+
+# COMMAND ----------
+
+df["Age"].astype
+
+# COMMAND ----------
+
+df["Breed"].astype
 
 # COMMAND ----------
 
@@ -134,7 +142,7 @@ print("Test passed!")
 # COMMAND ----------
 
 # TODO
-name_age_df = TODO
+name_age_df = df[["Name","Age"]]
 name_age_df
 
 # COMMAND ----------
@@ -169,7 +177,8 @@ print("Test passed!")
 
 # COMMAND ----------
 
-# TODO
+df["Human Age"] = df["Age"] * 7
+df
 
 # COMMAND ----------
 
@@ -202,7 +211,7 @@ print("Test passed!")
 # COMMAND ----------
 
 # TODO
-breed = TODO
+breed = df["Breed"][0]
 breed
 
 # COMMAND ----------
